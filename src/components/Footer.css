@@ -1,0 +1,135 @@
+.footer {
+  background: #2D1040;
+  color: #D4B8E0;
+  padding-top: 70px;
+}
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 40px;
+  padding-bottom: 50px;
+  border-bottom: 1px solid rgba(232, 180, 160, 0.2);
+}
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.footer-logo {
+  display: flex;
+  gap: 4px;
+}
+.footer-logo-text {
+  font-size: 26px;
+  font-weight: 800;
+  color: #ffffff;
+}
+.footer-logo-accent {
+  font-size: 26px;
+  font-weight: 800;
+  color: #E8B4A0;
+}
+.footer-brand-desc {
+  font-size: 14px;
+  line-height: 1.8;
+  color: #B8A0CC;
+  max-width: 300px;
+}
+.footer-social {
+  display: flex;
+  gap: 14px;
+}
+.social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  background: rgba(232, 180, 160, 0.15);
+  border-radius: 50%;
+  color: #E8B4A0;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+.social-icon:hover {
+  background: #E8B4A0;
+  color: #2D1040;
+  transform: translateY(-3px) scale(1.05);
+}
+.footer-heading {
+  font-size: 16px;
+  font-weight: 700;
+  color: #E8B4A0;
+  margin-bottom: 20px;
+}
+.footer-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.footer-list-item {
+  font-size: 14px;
+  color: #B8A0CC;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.footer-list-item:hover {
+  color: #E8B4A0;
+  transform: translateX(4px);
+}
+.footer-contact-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: #B8A0CC;
+}
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 0;
+}
+.footer-bottom-text {
+  font-size: 13px;
+  color: #8870A0;
+}
+.footer-bottom-links {
+  display: flex;
+  gap: 24px;
+}
+.footer-bottom-link {
+  font-size: 13px;
+  color: #8870A0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.footer-bottom-link:hover {
+  color: #E8B4A0;
+  transform: translateY(-2px);
+}
+@media (max-width: 900px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+}
+@media (max-width: 600px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+  .footer-brand-desc {
+    max-width: 100%;
+  }
+}
