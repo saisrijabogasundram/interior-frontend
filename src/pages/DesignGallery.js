@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from 'react';
-
 import API from '../api/axios';
 import { FiFilter, FiSearch } from 'react-icons/fi';
 import './DesignGallery.css';
-
-const BASE_URL = "http://127.0.0.1:8000"; // 🔥 change later when deploying
 
 const DesignGallery = () => {
   const [designs, setDesigns] = useState([]);
@@ -16,10 +13,15 @@ const DesignGallery = () => {
   const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(true);
 
+  // ✅ Fixed useEffect
   useEffect(() => {
-    fetchDesigns();
+    const fetchData = async () => {
+      await fetchDesigns();
+    };
+    fetchData();
   }, [filters]);
 
+  // ✅ Fixed API handling
   const fetchDesigns = async () => {
     setLoading(true);
     try {
@@ -30,24 +32,27 @@ const DesignGallery = () => {
       if (filters.budget) params.budget = filters.budget;
 
       const res = await API.get('/designs/', { params });
-      setDesigns(res.data);
+
+      // 🔥 IMPORTANT FIX
+      setDesigns(res.data.results || res.data || []);
+
     } catch (err) {
-      console.error("Error fetching designs:", err); // ✅ fixed
+      console.error("Error fetching designs:", err);
+      setDesigns([]); // fallback safety
     } finally {
       setLoading(false);
     }
   };
 
-  
-  const filtered = designs.filter((d) =>
-    (d.title || '').toLowerCase().includes(search.toLowerCase())
+  // ✅ Safe filtering
+  const filtered = (designs || []).filter((d) =>
+    (d?.title || '').toLowerCase().includes(search.toLowerCase())
   );
 
   return (
     <div>
-     
 
-      
+      {/* Hero Section */}
       <div className="gallery-hero">
         <h1 className="gallery-hero-title">Design Gallery</h1>
         <p className="gallery-hero-sub">
@@ -57,10 +62,10 @@ const DesignGallery = () => {
 
       <div className="gallery-container">
 
-        
+        {/* Toolbar */}
         <div className="gallery-toolbar">
 
-          
+          {/* Search */}
           <div className="search-box">
             <FiSearch className="search-icon" />
             <input
@@ -71,7 +76,7 @@ const DesignGallery = () => {
             />
           </div>
 
-          
+          {/* Filters */}
           <div className="gallery-filters">
             <FiFilter color="#4A1A6B" />
 
@@ -122,7 +127,7 @@ const DesignGallery = () => {
           </div>
         </div>
 
-        
+        {/* Content */}
         {loading ? (
           <div className="gallery-loading">Loading designs...</div>
 
@@ -137,27 +142,31 @@ const DesignGallery = () => {
             {filtered.map((d) => (
               <div key={d.id} className="gallery-card">
 
-                
-                {d.image_url ? (
-                  <img src={d.image_url} alt={d.title} className="gallery-img" />
+                {/* Image */}
+                {d?.image_url ? (
+                  <img
+                    src={d.image_url}
+                    alt={d.title}
+                    className="gallery-img"
+                  />
                 ) : (
                   <div className="gallery-placeholder">🏠</div>
                 )}
 
-                
+                {/* Info */}
                 <div className="gallery-info">
-                  <h3 className="gallery-title">{d.title}</h3>
+                  <h3 className="gallery-title">{d?.title}</h3>
 
-                  {d.description && (
+                  {d?.description && (
                     <p className="gallery-desc">{d.description}</p>
                   )}
 
                   <div className="gallery-tags">
                     <span className="badge">
-                      {d.category?.replace('_', ' ')}
+                      {d?.category?.replace('_', ' ')}
                     </span>
-                    <span className="badge">{d.style}</span>
-                    <span className="badge">{d.budget}</span>
+                    <span className="badge">{d?.style}</span>
+                    <span className="badge">{d?.budget}</span>
                   </div>
                 </div>
 
@@ -167,8 +176,6 @@ const DesignGallery = () => {
         )}
 
       </div>
-
-    
     </div>
   );
 };
