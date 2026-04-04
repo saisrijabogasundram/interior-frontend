@@ -12,29 +12,26 @@ const Products = () => {
 
   // ✅ Fixed useEffect
   useEffect(() => {
-    const fetchData = async () => {
-      await fetchProducts();
+    // ✅ Fixed API handling
+    const fetchProducts = async () => {
+      setLoading(true);
+      try {
+        const params = category ? { category } : {};
+        const res = await API.get('/products/', { params });
+
+        // 🔥 IMPORTANT FIX
+        setProducts(res.data.results || res.data || []);
+
+      } catch (err) {
+        console.log(err);
+        setProducts([]); // fallback safety
+      } finally {
+        setLoading(false);
+      }
     };
-    fetchData();
-  }, [category, fetchProducts]);
 
-  // ✅ Fixed API handling
-  const fetchProducts = async () => {
-    setLoading(true);
-    try {
-      const params = category ? { category } : {};
-      const res = await API.get('/products/', { params });
-
-      // 🔥 IMPORTANT FIX
-      setProducts(res.data.results || res.data || []);
-
-    } catch (err) {
-      console.log(err);
-      setProducts([]); // fallback safety
-    } finally {
-      setLoading(false);
-    }
-  };
+    fetchProducts();
+  }, [category]);
 
   const showMsg = (msg) => {
     setMessage(msg);

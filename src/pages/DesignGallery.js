@@ -15,34 +15,31 @@ const DesignGallery = () => {
 
   // ✅ Fixed useEffect
   useEffect(() => {
-    const fetchData = async () => {
-      await fetchDesigns();
+    // ✅ Fixed API handling
+    const fetchDesigns = async () => {
+      setLoading(true);
+      try {
+        const params = {};
+
+        if (filters.category) params.category = filters.category;
+        if (filters.style) params.style = filters.style;
+        if (filters.budget) params.budget = filters.budget;
+
+        const res = await API.get('/designs/', { params });
+
+        // 🔥 IMPORTANT FIX
+        setDesigns(res.data.results || res.data || []);
+
+      } catch (err) {
+        console.error("Error fetching designs:", err);
+        setDesigns([]); // fallback safety
+      } finally {
+        setLoading(false);
+      }
     };
-    fetchData();
-  }, [filters, fetchDesigns]);
 
-  // ✅ Fixed API handling
-  const fetchDesigns = async () => {
-    setLoading(true);
-    try {
-      const params = {};
-
-      if (filters.category) params.category = filters.category;
-      if (filters.style) params.style = filters.style;
-      if (filters.budget) params.budget = filters.budget;
-
-      const res = await API.get('/designs/', { params });
-
-      // 🔥 IMPORTANT FIX
-      setDesigns(res.data.results || res.data || []);
-
-    } catch (err) {
-      console.error("Error fetching designs:", err);
-      setDesigns([]); // fallback safety
-    } finally {
-      setLoading(false);
-    }
-  };
+    fetchDesigns();
+  }, [filters]);
 
   // ✅ Safe filtering
   const filtered = (designs || []).filter((d) =>
