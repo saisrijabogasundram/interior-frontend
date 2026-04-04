@@ -1,9 +1,8 @@
 import axios from 'axios';
 
 const API = axios.create({
-    baseURL: process.env.REACT_APP_API_URL
+    baseURL: `${process.env.REACT_APP_API_URL}/api`  // ✅ add /api here
 });
-
 
 const PUBLIC_URLS = ['/designs/', '/designs'];
 
@@ -15,22 +14,18 @@ API.interceptors.request.use((config) => {
     return config;
 });
 
-
 API.interceptors.response.use(
     (response) => response,
     async (error) => {
         const originalRequest = error.config;
 
-        // ✅ Check if this is a public route — if yes, just reject silently
         const requestUrl = originalRequest?.url || '';
         const isPublicRoute = PUBLIC_URLS.some((url) => requestUrl.includes(url));
 
         if (isPublicRoute) {
-            // Don't redirect — just return empty, Home handles it silently
             return Promise.reject(error);
         }
 
-     
         if (error.response?.status === 401 && !originalRequest._retry) {
             originalRequest._retry = true;
             try {
