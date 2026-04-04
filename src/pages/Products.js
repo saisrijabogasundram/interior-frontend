@@ -16,7 +16,7 @@ const Products = () => {
       await fetchProducts();
     };
     fetchData();
-  }, [category]);
+  }, [category, fetchProducts]);
 
   // ✅ Fixed API handling
   const fetchProducts = async () => {

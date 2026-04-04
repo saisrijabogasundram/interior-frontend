@@ -1,20 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import API from '../api/axios';
 import './Home.css';
 
 const Home = () => {
   const navigate = useNavigate();
-  const [designs, setDesigns] = useState([]);
   const [activeTab, setActiveTab] = useState('fullhome');
-
-  
-  useEffect(() => {
-    API.get('/designs/')
-      .then((res) => setDesigns(res.data.slice(0, 6)))
-      .catch(() => {});
-  }, []);
 
   
   useEffect(() => {
@@ -41,7 +32,6 @@ const Home = () => {
   ];
 
   const handleCalculate = () => {
-    const labels = { fullhome: 'Full Home', kitchen: 'Kitchen', wardrobe: 'Wardrobe' };
     navigate('/estimate');
   };
 

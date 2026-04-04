@@ -8,15 +8,6 @@ const Cart = () => {
   useEffect(() => {
     fetchCart();
   }, []);
-  const addToCart = async (productId) => {
-  try {
-    const res = await API.post('/products/cart/', { product: productId, quantity: 1 });
-    console.log('Added to cart:', res.data);
-  } catch (err) {
-    console.error('Add to cart failed:', err);
-  }
-};
- 
   const fetchCart = async () => {
     setLoading(true);
     setError(null);
