@@ -174,14 +174,14 @@ const Booking = () => {
             </div>
           </div>
         </div>
-        <Footer />
+        
       </div>
     );
   }
 
   return (
     <div>
-      <Navbar />
+      
 
       <div className="booking-hero">
         <h1 className="booking-hero-title">Book a Site Visit</h1>
