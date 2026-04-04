@@ -91,7 +91,7 @@ const Register = () => {
                 <div className="input-wrapper">
                   <FiUser className="input-icon" size={16} />
                   <input
-                    className="input-field input"
+                    className="input"
                     type="text"
                     placeholder="Username"
                     value={form.username}
@@ -106,9 +106,9 @@ const Register = () => {
               <div className="field">
                 <label className="label">Phone</label>
                 <div className="input-wrapper">
-                  <FiPhone className="input-icon" size={16}/>
+                  <FiPhone className="input-icon" size={16} />
                   <input
-                    className="input-field input"
+                    className="input"
                     type="tel"
                     placeholder="+91 XXXXX XXXXX"
                     value={form.phone}
@@ -123,9 +123,9 @@ const Register = () => {
             <div className="field">
               <label className="label">Email Address</label>
               <div className="input-wrapper">
-                <FiMail className="input-icon" size={16}/>
+                <FiMail className="input-icon" size={16} />
                 <input
-                  className="input-field input"
+                  className="input"
                   type="email"
                   placeholder="your@email.com"
                   value={form.email}
@@ -140,9 +140,9 @@ const Register = () => {
             <div className="field">
               <label className="label">Password</label>
               <div className="input-wrapper">
-                <FiLock className="input-icon" size={16}/>
+                <FiLock className="input-icon" size={16} />
                 <input
-                  className="input-field input"
+                  className="input"
                   type={showPass ? 'text' : 'password'}
                   placeholder="Min 8 characters"
                   value={form.password}
@@ -164,7 +164,7 @@ const Register = () => {
             <div className="field">
               <label className="label">I am a</label>
               <select
-                className="input-field"
+                className="input"
                 value={form.role}
                 onChange={(e) =>
                   setForm({ ...form, role: e.target.value })
