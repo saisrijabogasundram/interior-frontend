@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const API = axios.create({
-    baseURL: '',
+    baseURL: process.env.REACT_APP_API_URL
 });
 
 
@@ -35,7 +35,7 @@ API.interceptors.response.use(
             originalRequest._retry = true;
             try {
                 const refresh = localStorage.getItem('refresh_token');
-                const res = await axios.post('http://127.0.0.1:8000/api/users/login/refresh/', {
+                const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/users/login/refresh/`, {
                     refresh,
                 });
                 localStorage.setItem('access_token', res.data.access);

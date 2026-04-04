@@ -10,21 +10,16 @@ const Products = () => {
   const [message, setMessage] = useState('');
   const [processingId, setProcessingId] = useState(null);
 
-  // ✅ Fixed useEffect
   useEffect(() => {
-    // ✅ Fixed API handling
     const fetchProducts = async () => {
       setLoading(true);
       try {
         const params = category ? { category } : {};
         const res = await API.get('/products/', { params });
-
-        // 🔥 IMPORTANT FIX
         setProducts(res.data.results || res.data || []);
-
       } catch (err) {
         console.log(err);
-        setProducts([]); // fallback safety
+        setProducts([]);
       } finally {
         setLoading(false);
       }
@@ -65,7 +60,6 @@ const Products = () => {
   return (
     <div>
 
-      {/* Hero */}
       <div className="hero">
         <h1 className="hero-title">Product Marketplace</h1>
         <p className="hero-sub">
@@ -73,12 +67,10 @@ const Products = () => {
         </p>
       </div>
 
-      {/* Toast */}
       {message && <div className="toast">{message}</div>}
 
       <div className="container">
 
-        {/* Filters */}
         <div className="toolbar">
           <div className="filter-row">
             <FiFilter color="#1a4a3a" />
@@ -96,14 +88,13 @@ const Products = () => {
           </div>
         </div>
 
-        {/* Content */}
         {loading ? (
           <div className="loading">
             <span style={{ fontSize: '36px' }}>⏳</span>
             <p>Loading products...</p>
           </div>
 
-        ) : (products || []).length === 0 ? (
+        ) : products.length === 0 ? (
           <div className="empty">
             <span style={{ fontSize: '48px' }}>🛋️</span>
             <p>No products found in this category.</p>
@@ -111,10 +102,10 @@ const Products = () => {
 
         ) : (
           <div className="grid">
-            {(products || []).map((p) => (
+            {products.map((p) => (
               <div key={p.id} className="card">
 
-                {p?.image_url ? (
+                {p.image_url ? (
                   <img
                     src={p.image_url}
                     alt={p.name}
@@ -126,20 +117,20 @@ const Products = () => {
                 )}
 
                 <div className="info">
-                  <span className="badge">{p?.category}</span>
+                  <span className="badge">{p.category}</span>
 
-                  <h3 className="name">{p?.name}</h3>
+                  <h3 className="name">{p.name}</h3>
 
-                  {p?.description && (
+                  {p.description && (
                     <p className="desc">{p.description}</p>
                   )}
 
                   <div className="price-row">
                     <span className="price">
-                      ₹ {Number(p?.price || 0).toLocaleString()}
+                      ₹ {Number(p.price).toLocaleString()}
                     </span>
                     <span className="stock">
-                      {p?.stock > 0
+                      {p.stock > 0
                         ? `${p.stock} in stock`
                         : 'Out of stock'}
                     </span>
@@ -149,7 +140,7 @@ const Products = () => {
                     <button
                       className="cart-btn"
                       onClick={() => addToCart(p.id)}
-                      disabled={p?.stock === 0 || processingId === p.id}
+                      disabled={p.stock === 0 || processingId === p.id}
                     >
                       <FiShoppingCart size={16} />
                       {processingId === p.id ? ' Adding...' : ' Add to Cart'}
@@ -158,7 +149,7 @@ const Products = () => {
                     <button
                       className="order-btn"
                       onClick={() => placeOrder(p.id)}
-                      disabled={p?.stock === 0 || processingId === p.id}
+                      disabled={p.stock === 0 || processingId === p.id}
                     >
                       <FiZap size={16} />
                       {processingId === p.id ? ' Processing...' : ' Buy Now'}
@@ -173,6 +164,7 @@ const Products = () => {
         )}
 
       </div>
+
     </div>
   );
 };

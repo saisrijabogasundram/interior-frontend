@@ -97,6 +97,21 @@ const AdminDashboard = () => {
           </button>
         </div>
       </div>
+      <div className="admin-cards">
+
+      <div className="card">
+        <FiPackage size={24} />
+        <h3>Products</h3>
+        <p>Manage all products</p>
+      </div>
+
+      <div className="card">
+        <FiCalendar size={24} />
+        <h3>Bookings</h3>
+        <p>View all bookings</p>
+      </div>
+
+    </div>
 
       <div className="admin-body">
 

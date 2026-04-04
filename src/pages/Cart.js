@@ -81,7 +81,7 @@ const Cart = () => {
                 <h4>{item.product_name}</h4>
                 <p>₹ {item.product_price}</p>
                 <p>Quantity: {item.quantity}</p>
-
+                <button onClick={addToCart}>Add to Cart</button>
                 <button
                   onClick={() => removeItem(item.id)}
                   style={{
