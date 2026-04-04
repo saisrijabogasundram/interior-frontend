@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import API from '../api/axios'; // ✅ use API instead of axios
 
 const SMSOTPVerification = ({ phone, onVerified }) => {
   const [otp, setOtp] = useState('');
@@ -13,7 +13,7 @@ const SMSOTPVerification = ({ phone, onVerified }) => {
     setError('');
     setMessage('');
     try {
-      await axios.post('/api/users/send-otp/', { phone_number: phone });
+      await API.post('/users/send-otp/', { phone_number: phone }); // ✅ fixed URL
       setOtpSent(true);
       setMessage(`OTP sent to ${phone}`);
     } catch (err) {
@@ -27,7 +27,7 @@ const SMSOTPVerification = ({ phone, onVerified }) => {
     setLoading(true);
     setError('');
     try {
-      await axios.post('/api/users/verify-otp/', { phone_number: phone, otp });
+      await API.post('/users/verify-otp/', { phone_number: phone, otp }); // ✅ fixed URL
       setMessage('Phone verified successfully!');
       onVerified();
     } catch (err) {
@@ -54,7 +54,7 @@ const SMSOTPVerification = ({ phone, onVerified }) => {
             placeholder="Enter 6-digit OTP"
             value={otp}
             maxLength={6}
-            onChange={(e) => setOtp(e.target.value.replace(/\D/g, ''))} // numbers only
+            onChange={(e) => setOtp(e.target.value.replace(/\D/g, ''))}
           />
           <button onClick={verifyOTP} disabled={loading || otp.length !== 6}>
             {loading ? 'Verifying...' : 'Verify OTP'}
