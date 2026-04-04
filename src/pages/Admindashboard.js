@@ -2,8 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import API from '../api/axios';
 import {
-  FiUsers, FiUserCheck, FiShield,
-  FiTrendingUp, FiSettings, FiTrash2
+  FiUsers,
+  FiUserCheck,
+  FiShield,
+  FiTrendingUp,
+  FiSettings,
+  FiTrash2,
+  FiPackage,
+  FiCalendar
 } from 'react-icons/fi';
 import './Admindashboard.css';
 
@@ -61,7 +67,6 @@ const AdminDashboard = () => {
     }
   };
 
-
   const statCards = stats ? [
     { label: 'Total Users',     value: stats.total_users,     icon: <FiUsers />,     bg: '#e8f5f0', color: '#1a4a3a' },
     { label: 'Customers',       value: stats.total_customers, icon: <FiUserCheck />, bg: '#e8f0ff', color: '#4f46e5' },
@@ -69,7 +74,6 @@ const AdminDashboard = () => {
     { label: 'Staff Members',   value: stats.total_staff,     icon: <FiShield />,    bg: '#e8f5ff', color: '#2563eb' },
     { label: 'Admins',          value: stats.total_admins,    icon: <FiShield />,    bg: '#fee8e8', color: '#dc2626' },
   ] : [];
-
 
   const quickLinks = [
     { icon: '📅', bg: '#e8f5f0', color: '#1a4a3a', label: 'Manage Bookings',  sub: 'View & update all bookings',  path: '/staff/bookings'  },
@@ -82,7 +86,6 @@ const AdminDashboard = () => {
   return (
     <div className="admin-dashboard">
 
-      
       <div className="admin-hero">
         <div className="admin-hero__left">
           <h1>Admin Dashboard</h1>
@@ -97,25 +100,22 @@ const AdminDashboard = () => {
           </button>
         </div>
       </div>
+
       <div className="admin-cards">
-
-      <div className="card">
-        <FiPackage size={24} />
-        <h3>Products</h3>
-        <p>Manage all products</p>
+        <div className="card">
+          <FiPackage size={24} />
+          <h3>Products</h3>
+          <p>Manage all products</p>
+        </div>
+        <div className="card">
+          <FiCalendar size={24} />
+          <h3>Bookings</h3>
+          <p>View all bookings</p>
+        </div>
       </div>
-
-      <div className="card">
-        <FiCalendar size={24} />
-        <h3>Bookings</h3>
-        <p>View all bookings</p>
-      </div>
-
-    </div>
 
       <div className="admin-body">
 
-        
         {error   && <div className="dash-error">{error}</div>}
         {message && <div className="dash-error" style={{ background: '#d1fae5', color: '#065f46' }}>{message}</div>}
 
@@ -123,7 +123,6 @@ const AdminDashboard = () => {
           <div className="dash-loading">⏳ Loading dashboard...</div>
         ) : (
           <>
-           
             <div className="stats-grid">
               {statCards.map((card, i) => (
                 <div className="stat-card" key={i}>
@@ -138,10 +137,8 @@ const AdminDashboard = () => {
               ))}
             </div>
 
-         
             <div className="admin-grid">
 
-             
               <div className="panel">
                 <div className="panel__head">
                   <span className="panel__title">📅 Recent Bookings</span>
@@ -199,7 +196,6 @@ const AdminDashboard = () => {
                 </div>
               </div>
 
-              
               <div className="panel">
                 <div className="panel__head">
                   <span className="panel__title">⚡ Quick Actions</span>
