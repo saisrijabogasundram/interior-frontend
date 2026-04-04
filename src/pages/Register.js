@@ -89,7 +89,7 @@ const Register = () => {
               <div className="field">
                 <label className="label">Username</label>
                 <div className="input-wrapper">
-                  <FiUser className="input-icon" />
+                  <FiUser className="input-icon" size={16} />
                   <input
                     className="input-field input"
                     type="text"
@@ -106,7 +106,7 @@ const Register = () => {
               <div className="field">
                 <label className="label">Phone</label>
                 <div className="input-wrapper">
-                  <FiPhone className="input-icon" />
+                  <FiPhone className="input-icon" size={16}/>
                   <input
                     className="input-field input"
                     type="tel"
@@ -123,7 +123,7 @@ const Register = () => {
             <div className="field">
               <label className="label">Email Address</label>
               <div className="input-wrapper">
-                <FiMail className="input-icon" />
+                <FiMail className="input-icon" size={16}/>
                 <input
                   className="input-field input"
                   type="email"
@@ -140,7 +140,7 @@ const Register = () => {
             <div className="field">
               <label className="label">Password</label>
               <div className="input-wrapper">
-                <FiLock className="input-icon" />
+                <FiLock className="input-icon" size={16}/>
                 <input
                   className="input-field input"
                   type={showPass ? 'text' : 'password'}
