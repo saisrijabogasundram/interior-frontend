@@ -10,7 +10,6 @@ import {
   FiEyeOff,
 } from 'react-icons/fi';
 import './Register.css';
-import SMSOTPVerification from '../components/OTPVerification'; 
 
 const Register = () => {
   const [form, setForm] = useState({
@@ -25,7 +24,6 @@ const Register = () => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [showPass, setShowPass] = useState(false);
-  const [isPhoneVerified, setIsPhoneVerified] = useState(false); 
 
   const navigate = useNavigate();
 
@@ -50,7 +48,6 @@ const Register = () => {
 
   return (
     <div className="register-page">
-      
       <div className="register-left">
         <div className="left-content">
           <h1 className="brand">
@@ -79,7 +76,6 @@ const Register = () => {
         </div>
       </div>
 
-      
       <div className="register-right">
         <div className="card">
           <h2 className="title">Create Account</h2>
@@ -90,7 +86,6 @@ const Register = () => {
 
           <form onSubmit={handleSubmit} className="form">
             <div className="row">
-              
               <div className="field">
                 <label className="label">Username</label>
                 <div className="input-wrapper">
@@ -108,7 +103,6 @@ const Register = () => {
                 </div>
               </div>
 
-             
               <div className="field">
                 <label className="label">Phone</label>
                 <div className="input-wrapper">
@@ -118,31 +112,14 @@ const Register = () => {
                     type="tel"
                     placeholder="+91 XXXXX XXXXX"
                     value={form.phone}
-                    onChange={(e) => {
-                      setForm({ ...form, phone: e.target.value });
-                      setIsPhoneVerified(false); 
-                    }}
+                    onChange={(e) =>
+                      setForm({ ...form, phone: e.target.value })
+                    }
                   />
                 </div>
               </div>
             </div>
 
-           
-            {form.phone.length === 10 && !isPhoneVerified && (
-              <div className="field">
-                <SMSOTPVerification 
-                  phone={form.phone}
-                  onVerified={() => setIsPhoneVerified(true)}
-                />
-              </div>
-            )}
-
-            
-            {isPhoneVerified && (
-              <p className="success-box">✓ Phone number verified</p>
-            )}
-
-            
             <div className="field">
               <label className="label">Email Address</label>
               <div className="input-wrapper">
@@ -160,7 +137,6 @@ const Register = () => {
               </div>
             </div>
 
-            
             <div className="field">
               <label className="label">Password</label>
               <div className="input-wrapper">
@@ -185,7 +161,6 @@ const Register = () => {
               </div>
             </div>
 
-            
             <div className="field">
               <label className="label">I am a</label>
               <select
@@ -203,7 +178,6 @@ const Register = () => {
               </select>
             </div>
 
-           
             <button
               className="btn-primary submit-btn"
               type="submit"
