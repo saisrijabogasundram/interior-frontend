@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const API = axios.create({
-    baseURL: 'https://interior-fullstack-production.up.railway.app/api'
+    baseURL: `${process.env.REACT_APP_API_URL}/api`
 });
 
 const PUBLIC_URLS = ['/designs/', '/designs'];
@@ -30,16 +30,28 @@ API.interceptors.response.use(
             originalRequest._retry = true;
             try {
                 const refresh = localStorage.getItem('refresh_token');
-                const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/users/login/refresh/`, {
-                    refresh,
-                });
+                const res = await axios.post(
+                    `${process.env.REACT_APP_API_URL}/api/users/login/refresh/`,
+                    { refresh }
+                );
+
                 localStorage.setItem('access_token', res.data.access);
                 originalRequest.headers.Authorization = `Bearer ${res.data.access}`;
+
+                // ✅ Re-fetch user profile to keep role in localStorage
+                const profileRes = await axios.get(
+                    `${process.env.REACT_APP_API_URL}/api/users/profile/`,
+                    { headers: { Authorization: `Bearer ${res.data.access}` } }
+                );
+                localStorage.setItem('user', JSON.stringify(profileRes.data));
+                localStorage.setItem('username', profileRes.data.username);
+
                 return axios(originalRequest);
             } catch (err) {
                 localStorage.removeItem('access_token');
                 localStorage.removeItem('refresh_token');
                 localStorage.removeItem('username');
+                localStorage.removeItem('user');
                 window.location.href = '/login';
             }
         }

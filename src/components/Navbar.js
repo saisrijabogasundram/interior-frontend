@@ -13,7 +13,6 @@ const Navbar = () => {
 
   const token = localStorage.getItem('access_token');
 
-  
   useEffect(() => {
     const user = localStorage.getItem('username');
     if (user) setUsername(user);
@@ -27,9 +26,8 @@ const Navbar = () => {
         setRole('');
       }
     }
-  }, []);
+  }, [location]); // ✅ re-read on every page change
 
- 
   const goToDashboard = () => {
     if (role === 'admin' || role === 'owner') {
       navigate('/admin/dashboard');
@@ -50,24 +48,22 @@ const Navbar = () => {
   };
 
   const navLinks = [
-    { label: 'Designs',      path: '/designs'   },
-    { label: 'Designers',    path: '/designers' },
-    { label: 'Products',     path: '/products'  },
-    { label: 'Projects',     path: '/projects'  },
-    { label: 'Cost Estimate',path: '/estimate'  },
+    { label: 'Designs',       path: '/designs'   },
+    { label: 'Designers',     path: '/designers' },
+    { label: 'Products',      path: '/products'  },
+    { label: 'Projects',      path: '/projects'  },
+    { label: 'Cost Estimate', path: '/estimate'  },
   ];
 
   return (
     <nav className="navbar">
       <div className="navbar-container">
 
-       
         <div className="navbar-logo" onClick={() => navigate('/')}>
           <span className="logo-text">Interior</span>
           <span className="logo-accent">Design</span>
         </div>
 
-        
         <div className="navbar-links">
           {navLinks.map((link) => (
             <span
@@ -80,23 +76,19 @@ const Navbar = () => {
           ))}
         </div>
 
-        
         <div className="navbar-actions">
           {token ? (
             <>
-             
               <div className="cart" onClick={() => navigate('/cart')}>
                 <FiShoppingCart size={18} />
                 <span className="cart-text">Cart</span>
               </div>
 
-              
               <div className="user-info" onClick={goToDashboard}>
                 <FiUser size={18} />
                 <span className="username">{username || 'User'}</span>
               </div>
 
-              {/* LOGOUT */}
               <button className="logout-btn" onClick={logout}>
                 <FiLogOut size={16} />
                 Logout
@@ -114,13 +106,11 @@ const Navbar = () => {
           )}
         </div>
 
-        
         <button className="menu-btn" onClick={() => setMenuOpen(!menuOpen)}>
           {menuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
         </button>
       </div>
 
-     
       {menuOpen && (
         <div className="mobile-menu">
           {navLinks.map((link) => (
@@ -138,7 +128,6 @@ const Navbar = () => {
 
           {token ? (
             <>
-              
               <span
                 className="mobile-link"
                 onClick={() => {
