@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import API from '../api/axios';
-import { FiUsers, FiCalendar, FiUserCheck, FiShield } from 'react-icons/fi';
+import { FiUsers, FiUserCheck, FiShield } from 'react-icons/fi';
 
 const Reports = () => {
   const [stats, setStats] = useState(null);

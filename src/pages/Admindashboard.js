@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import API from '../api/axios';
 import {
-  FiUsers, FiUserCheck, FiShield, FiCalendar,
-  FiPackage, FiTrendingUp, FiSettings, FiTrash2
+  FiUsers, FiUserCheck, FiShield,
+  FiTrendingUp, FiSettings, FiTrash2
 } from 'react-icons/fi';
 import './Admindashboard.css';
 

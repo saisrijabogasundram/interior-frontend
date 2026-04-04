@@ -19,7 +19,7 @@ const DesignGallery = () => {
       await fetchDesigns();
     };
     fetchData();
-  }, [filters]);
+  }, [filters, fetchDesigns]);
 
   // ✅ Fixed API handling
   const fetchDesigns = async () => {

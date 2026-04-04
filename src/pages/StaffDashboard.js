@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import API from '../api/axios';
-import { FiCalendar, FiPackage, FiUsers, FiCheckCircle } from 'react-icons/fi';
+import { FiCalendar, FiPackage } from 'react-icons/fi';
 import './StaffDashboard.css';
 
 const STATUS_CHOICES = ['pending', 'confirmed', 'cancelled', 'completed'];
