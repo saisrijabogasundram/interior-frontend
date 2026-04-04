@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import API from '../api/axios';
-import { FiMail, FiLock, FiEye, FiEyeOff } from 'react-icons/fi';
+import { FiUser, FiLock, FiEye, FiEyeOff } from 'react-icons/fi';
 import './Login.css';
 
 const Login = () => {
@@ -19,28 +19,19 @@ const Login = () => {
 
     try {
       const res = await API.post('/users/login/', form);
-
-      
       localStorage.setItem('access_token', res.data.access);
       localStorage.setItem('refresh_token', res.data.refresh);
-
-     
       localStorage.setItem('user', JSON.stringify(res.data.user));
-
-    
       localStorage.setItem('username', res.data.user.username);
 
-      
       const role = res.data.user.role;
-      if (role === 'admin' || role === 'owner'){
+      if (role === 'admin' || role === 'owner') {
         navigate('/admin/dashboard');
-      }
-      else if (role === 'staff') {
-        navigate('/staff/bookings');  
+      } else if (role === 'staff') {
+        navigate('/staff/bookings');
       } else {
         navigate('/');
       }
-
     } catch (err) {
       setError('Invalid username or password. Please try again.');
     } finally {
@@ -51,19 +42,15 @@ const Login = () => {
   return (
     <div className="login-page">
 
-      
       <div className="login-left">
         <div className="left-content">
           <h1 className="brand">
             Interior <span className="brand-accent">Design</span>
           </h1>
-
           <h2 className="tagline">Transform Your Space Into A Dream Home</h2>
-
           <p className="desc">
             Join thousands of homeowners who have transformed their homes with our expert designers.
           </p>
-
           <div className="features">
             {[
               '500+ Expert Designers',
@@ -80,7 +67,6 @@ const Login = () => {
         </div>
       </div>
 
-      
       <div className="login-right">
         <div className="login-card">
           <h2 className="title">Welcome Back!</h2>
@@ -90,13 +76,12 @@ const Login = () => {
 
           <form onSubmit={handleSubmit} className="form">
 
-            
             <div className="field">
               <label className="label">Username</label>
               <div className="input-wrapper">
-                <FiMail className="input-icon" />
+                <FiUser className="input-icon" size={16} />
                 <input
-                  className="input-field input"
+                  className="input"
                   type="text"
                   placeholder="Enter your username"
                   value={form.username}
@@ -111,9 +96,9 @@ const Login = () => {
             <div className="field">
               <label className="label">Password</label>
               <div className="input-wrapper">
-                <FiLock className="input-icon" />
+                <FiLock className="input-icon" size={16} />
                 <input
-                  className="input-field input"
+                  className="input"
                   type={showPass ? 'text' : 'password'}
                   placeholder="Enter your password"
                   value={form.password}
@@ -132,7 +117,6 @@ const Login = () => {
               </div>
             </div>
 
-           
             <button
               className="btn-primary submit-btn"
               type="submit"
