@@ -38,17 +38,18 @@ function App() {
 
       <Routes>
 
-        {/* Public Routes */}
+        
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/designs" element={<DesignGallery />} />
         <Route path="/designers" element={<Designers />} />
+        <Route path="/booking/:id" element={<Booking />} />
         <Route path="/products" element={<Products />} />
         <Route path="/projects" element={<Projects />} />
         <Route path="/estimate" element={<CostEstimation />} />
 
-        {/* Admin Routes */}
+        
         <Route
           path="/admin/staff"
           element={
@@ -74,7 +75,7 @@ function App() {
           }
         />
 
-        {/* Staff Routes */}
+        
         <Route
           path="/staff/bookings"
           element={
@@ -108,28 +109,12 @@ function App() {
           }
         />
 
-        {/* Protected User Routes */}
-        <Route
-          path="/booking/:id"
-          element={
-            <UserRoute>
-              <Booking />
-            </UserRoute>
-          }
-        />
+       
         <Route
           path="/cart"
           element={
             <UserRoute>
               <Cart />
-            </UserRoute>
-          }
-        />
-        <Route
-          path="/projects"
-          element={
-            <UserRoute>
-              <Projects />
             </UserRoute>
           }
         />
@@ -142,7 +127,7 @@ function App() {
           }
         />
 
-        {/* Fallback */}
+        
         <Route path="*" element={<Navigate to="/" />} />
 
       </Routes>

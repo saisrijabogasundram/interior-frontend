@@ -8,7 +8,9 @@ import {
   FiMapPin,
   FiDollarSign,
   FiFileText,
-  FiCheckCircle
+  FiCheckCircle,
+  FiUser,
+  FiPhone,
 } from 'react-icons/fi';
 import './Booking.css';
 
@@ -96,6 +98,8 @@ const Booking = () => {
   const [loadingDesigner, setLoadingDesigner] = useState(true);
 
   const [form, setForm] = useState({
+    guest_name: '',
+    guest_phone: '',
     visit_date: '',
     time_slot: '',
     location: '',
@@ -110,7 +114,9 @@ const Booking = () => {
   useEffect(() => {
     const fetchDesigner = async () => {
       try {
-        const res = await API.get(`/bookings/designers/${id}/`);
+        const res = await API.get(`/bookings/designers/${id}/`, {
+          headers: { Authorization: undefined },
+        });
         setDesigner(res.data);
       } catch (err) {
         console.error(err);
@@ -139,11 +145,17 @@ const Booking = () => {
     setError('');
 
     try {
-      await API.post('/bookings/create/', {
-        ...form,
-        designer: id,
-        booking_date: new Date().toISOString().split('T')[0],
-      });
+      await API.post(
+        '/bookings/create/',
+        {
+          ...form,
+          designer: id,
+          booking_date: new Date().toISOString().split('T')[0],
+        },
+        {
+          headers: { Authorization: undefined }, // no auth needed
+        }
+      );
       setSuccess(true);
     } catch (err) {
       console.error(err);
@@ -156,33 +168,26 @@ const Booking = () => {
   if (success) {
     return (
       <div>
-        
         <div className="success-page">
           <div className="success-card">
             <FiCheckCircle size={64} color="#4A1A6B" />
             <h2 className="success-title">Booking Confirmed!</h2>
             <p className="success-text">
-              Your site visit has been booked successfully. Our designer will contact you shortly.
+              Your site visit has been booked successfully. Our designer will contact you shortly on <strong>{form.guest_phone}</strong>.
             </p>
             <div className="success-buttons">
-              <button className="btn-primary" onClick={() => navigate('/projects')}>
-                View My Projects
-              </button>
               <button className="btn-secondary" onClick={() => navigate('/designers')}>
                 Back to Designers
               </button>
             </div>
           </div>
         </div>
-        
       </div>
     );
   }
 
   return (
     <div>
-      
-
       <div className="booking-hero">
         <h1 className="booking-hero-title">Book a Site Visit</h1>
         <p className="booking-hero-sub">
@@ -242,10 +247,42 @@ const Booking = () => {
 
           <div className="booking-form-card">
             <h2 className="booking-form-title">Schedule Your Visit</h2>
+            <p className="booking-form-sub">No account needed — fill in your details below</p>
 
             {error && <div className="error-box">{error}</div>}
 
             <form onSubmit={handleSubmit} className="booking-form">
+
+             
+              <div className="booking-row">
+                <div className="booking-field">
+                  <label className="booking-label">
+                    <FiUser size={16} /> Your Name
+                  </label>
+                  <input
+                    className="input-field"
+                    type="text"
+                    placeholder="Enter your full name"
+                    value={form.guest_name}
+                    onChange={(e) => setForm({ ...form, guest_name: e.target.value })}
+                    required
+                  />
+                </div>
+
+                <div className="booking-field">
+                  <label className="booking-label">
+                    <FiPhone size={16} /> Phone Number
+                  </label>
+                  <input
+                    className="input-field"
+                    type="tel"
+                    placeholder="+91 XXXXX XXXXX"
+                    value={form.guest_phone}
+                    onChange={(e) => setForm({ ...form, guest_phone: e.target.value })}
+                    required
+                  />
+                </div>
+              </div>
 
               <div className="booking-field">
                 <label className="booking-label">
@@ -286,6 +323,7 @@ const Booking = () => {
                 <textarea
                   className="input-field"
                   rows={3}
+                  placeholder="Enter your full address"
                   value={form.location}
                   onChange={(e) => setForm({ ...form, location: e.target.value })}
                   required
@@ -317,6 +355,7 @@ const Booking = () => {
                 <textarea
                   className="input-field"
                   rows={4}
+                  placeholder="Describe what you're looking for..."
                   value={form.requirements}
                   onChange={(e) => setForm({ ...form, requirements: e.target.value })}
                 />
@@ -329,13 +368,12 @@ const Booking = () => {
               >
                 {loading ? 'Booking...' : 'Confirm Site Visit'}
               </button>
+
             </form>
           </div>
 
         </div>
       </div>
-
-      
     </div>
   );
 };

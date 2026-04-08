@@ -10,15 +10,29 @@ const Designers = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    API.get('/bookings/designers/').then((res) => {
-      setDesigners(res.data);
-      setLoading(false);
-    }).catch(() => setLoading(false));
+    API.get('/bookings/designers/', {
+      headers: {
+        Authorization: undefined, // skip auth token for public access
+      },
+    })
+      .then((res) => {
+        setDesigners(res.data);
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
   }, []);
+
+  const handleBooking = (designerId) => {
+    const token = localStorage.getItem('access_token');
+    if (!token) {
+      navigate('/login', { state: { from: `/booking/${designerId}` } });
+    } else {
+      navigate(`/booking/${designerId}`);
+    }
+  };
 
   return (
     <div>
-     
       <div className="designers-hero">
         <h1 className="designers-hero-title">Our Expert Designers</h1>
         <p className="designers-hero-sub">Meet our verified interior design professionals</p>
@@ -58,7 +72,7 @@ const Designers = () => {
                     </div>
                   </div>
                   {d.bio && <p className="designer-bio">{d.bio}</p>}
-                  <button className="book-btn" onClick={() => navigate(`/booking/${d.id}`)}>
+                  <button className="book-btn" onClick={() => handleBooking(d.id)}>
                     <FiCalendar size={16} />
                     Book Site Visit
                   </button>
@@ -68,7 +82,6 @@ const Designers = () => {
           </div>
         )}
       </div>
-     
     </div>
   );
 };

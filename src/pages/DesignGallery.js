@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import API from '../api/axios';
 import { FiFilter, FiSearch } from 'react-icons/fi';
 import './DesignGallery.css';
@@ -12,7 +13,20 @@ const DesignGallery = () => {
   });
   const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(true);
-
+  const [searchParams] = useSearchParams();
+  useEffect(() => {
+    const room = searchParams.get('room');
+    const roomMap = {
+      'living-room': 'living_room',
+      'kitchen':     'kitchen',
+      'bathroom':    'bathroom',
+      'bedroom':     'bedroom',
+      'balcony':     'balcony',
+    };
+    if (room && roomMap[room]) {
+      setFilters((prev) => ({ ...prev, category: roomMap[room] }));
+    }
+  }, [searchParams]);
   useEffect(() => {
     const fetchDesigns = async () => {
       setLoading(true);

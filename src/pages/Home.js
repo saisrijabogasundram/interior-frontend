@@ -63,27 +63,32 @@ const Home = () => {
   ];
 
   const mosaicItems = [
-    {
-      img: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=80',
-      bg: 'c1', label: 'Living Room Designs', big: true
-    },
-    {
-      img: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&q=80',
-      bg: 'c2', label: 'Kitchen Designs',     big: false
-    },
-    {
-      img: 'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=400&q=80',
-      bg: 'c3', label: 'Bathroom',            big: false
-    },
-    {
-      img: 'https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=400&q=80',
-      bg: 'c4', label: 'Bedroom Designs',     big: false
-    },
-    {
-      img: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80',
-      bg: 'c5', label: 'Balcony & Foyer',     big: false
-    },
-  ];
+  {
+    img: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=80',
+    bg: 'c1', label: 'Living Room Designs', big: true,
+    path: '/designs?room=living-room'
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&q=80',
+    bg: 'c2', label: 'Kitchen Designs', big: false,
+    path: '/designs?room=kitchen'        // ← was missing, falling back to /designs
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=400&q=80',
+    bg: 'c3', label: 'Bathroom', big: false,
+    path: '/designs?room=bathroom'
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=400&q=80',
+    bg: 'c4', label: 'Bedroom Designs', big: false,
+    path: '/designs?room=bedroom'
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80',
+    bg: 'c5', label: 'Balcony & Foyer', big: false,
+    path: '/designs?room=balcony'
+  },
+];
 
   const steps = [
     { num: 1, title: 'Book a Free Consultation', desc: 'Meet our expert designers online or visit a studio near you'       },
@@ -230,7 +235,7 @@ const Home = () => {
             <div
               className={`mosaic__card ${item.big ? 'big' : ''}`}
               key={i}
-              onClick={() => navigate('/designs')}
+              onClick={() => navigate('item.path')}
             >
               <div className={`mosaic__bg ${item.bg}`}>
                 <img src={item.img} alt={item.label} className="mosaic__image" />
