@@ -1,9 +1,7 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 
 import Navbar from './components/Navbar';
-
 
 import Home from './pages/Home';
 import Login from './pages/Login';
@@ -25,31 +23,32 @@ import ManageProducts from './pages/ManageProducts';
 import ManageDesigners from './pages/ManageDesigners';
 import Reports from './pages/Reports';
 
-
 import { AdminRoute, StaffRoute } from './utils/PrivateRoute';
-
 
 const UserRoute = ({ children }) => {
   const token = localStorage.getItem('access_token');
-  return token ? children : <Navigate to="/login" />;
+  const location = useLocation();
+  return token ? children : <Navigate to="/login" state={{ from: location.pathname }} />;
 };
 
 function App() {
   return (
     <Router>
-
-      
       <Navbar />
 
       <Routes>
 
-        
+        {/* Public Routes */}
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-
         <Route path="/designs" element={<DesignGallery />} />
+        <Route path="/designers" element={<Designers />} />
+        <Route path="/products" element={<Products />} />
+        <Route path="/projects" element={<Projects />} />
+        <Route path="/estimate" element={<CostEstimation />} />
 
+        {/* Admin Routes */}
         <Route
           path="/admin/staff"
           element={
@@ -75,7 +74,7 @@ function App() {
           }
         />
 
-        
+        {/* Staff Routes */}
         <Route
           path="/staff/bookings"
           element={
@@ -109,15 +108,7 @@ function App() {
           }
         />
 
-        
-        <Route
-          path="/designers"
-          element={
-            <UserRoute>
-              <Designers />
-            </UserRoute>
-          }
-        />
+        {/* Protected User Routes */}
         <Route
           path="/booking/:id"
           element={
@@ -127,21 +118,13 @@ function App() {
           }
         />
         <Route
-          path="/products"
+          path="/cart"
           element={
             <UserRoute>
-              <Products />
+              <Cart />
             </UserRoute>
           }
         />
-        <Route
-  path="/cart"
-  element={
-    <UserRoute>
-      <Cart />
-    </UserRoute>
-  }
-/>
         <Route
           path="/projects"
           element={
@@ -151,24 +134,15 @@ function App() {
           }
         />
         <Route
-          path="/estimate"
+          path="/dashboard"
           element={
             <UserRoute>
-              <CostEstimation />
+              <UserDashboard />
             </UserRoute>
           }
         />
-        <Route 
-         path="/dashboard"       
-         element={
-           <UserRoute>
-            <UserDashboard />
-            </UserRoute>
-          } 
-        />
-        
 
-       
+        {/* Fallback */}
         <Route path="*" element={<Navigate to="/" />} />
 
       </Routes>

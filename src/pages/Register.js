@@ -48,127 +48,91 @@ const Register = () => {
 
   return (
     <div className="register-page">
-      <div className="register-left">
-        <div className="left-content">
+      <div className="register-card">
+
+        <div className="register-card__header">
           <h1 className="brand">
-            Interior<span className="brand-accent">Design</span>
+            Interior <span className="brand-accent">Design</span>
           </h1>
-          <h2 className="tagline">
-            Start Your Interior Design Journey Today
-          </h2>
-          <p className="desc">
-            Create your account and get access to 500+ expert designers and
-            10,000+ design inspirations.
-          </p>
-          <div className="steps">
-            {[
-              'Create your account',
-              'Browse design inspirations',
-              'Book a free site visit',
-              'Transform your home',
-            ].map((s, i) => (
-              <div key={s} className="step">
-                <div className="step-num">{i + 1}</div>
-                <span className="step-text">{s}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      <div className="register-right">
-        <div className="card">
-          <h2 className="title">Create Account</h2>
+          <h2 className="title">Create Your Account</h2>
           <p className="subtitle">Join thousands of happy homeowners</p>
+        </div>
 
-          {error && <div className="error-box">{error}</div>}
-          {message && <div className="success-box">{message}</div>}
+        {error && <div className="error-box">{error}</div>}
+        {message && <div className="success-box">{message}</div>}
 
-          <form onSubmit={handleSubmit} className="form">
-            <div className="row">
-              <div className="field">
-                <label className="label">Username</label>
-                <div className="input-wrapper">
-                  <FiUser className="input-icon" size={16} />
-                  <input
-                    className="input"
-                    type="text"
-                    placeholder="Username"
-                    value={form.username}
-                    onChange={(e) =>
-                      setForm({ ...form, username: e.target.value })
-                    }
-                    required
-                  />
-                </div>
-              </div>
+        <form onSubmit={handleSubmit} className="form">
 
-              <div className="field">
-                <label className="label">Phone</label>
-                <div className="input-wrapper">
-                  <FiPhone className="input-icon" size={16} />
-                  <input
-                    className="input"
-                    type="tel"
-                    placeholder="+91 XXXXX XXXXX"
-                    value={form.phone}
-                    onChange={(e) =>
-                      setForm({ ...form, phone: e.target.value })
-                    }
-                  />
-                </div>
-              </div>
-            </div>
-
+          <div className="row">
             <div className="field">
-              <label className="label">Email Address</label>
               <div className="input-wrapper">
-                <FiMail className="input-icon" size={16} />
+                <FiUser className="input-icon" size={16} />
                 <input
                   className="input"
-                  type="email"
-                  placeholder="your@email.com"
-                  value={form.email}
-                  onChange={(e) =>
-                    setForm({ ...form, email: e.target.value })
-                  }
+                  type="text"
+                  placeholder="Username"
+                  value={form.username}
+                  onChange={(e) => setForm({ ...form, username: e.target.value })}
                   required
                 />
               </div>
             </div>
 
             <div className="field">
-              <label className="label">Password</label>
               <div className="input-wrapper">
-                <FiLock className="input-icon" size={16} />
+                <FiPhone className="input-icon" size={16} />
                 <input
                   className="input"
-                  type={showPass ? 'text' : 'password'}
-                  placeholder="Min 8 characters"
-                  value={form.password}
-                  onChange={(e) =>
-                    setForm({ ...form, password: e.target.value })
-                  }
-                  required
+                  type="tel"
+                  placeholder="Phone number"
+                  value={form.phone}
+                  onChange={(e) => setForm({ ...form, phone: e.target.value })}
                 />
-                <button
-                  type="button"
-                  className="eye-btn"
-                  onClick={() => setShowPass(!showPass)}
-                >
-                  {showPass ? <FiEyeOff /> : <FiEye />}
-                </button>
               </div>
             </div>
+          </div>
 
-            <div className="field">
-              <label className="label">I am a</label>
-              <select
+          <div className="field">
+            <div className="input-wrapper">
+              <FiMail className="input-icon" size={16} />
+              <input
                 className="input"
+                type="email"
+                placeholder="Enter your email"
+                value={form.email}
+                onChange={(e) => setForm({ ...form, email: e.target.value })}
+                required
+              />
+            </div>
+          </div>
+
+          <div className="field">
+            <div className="input-wrapper">
+              <FiLock className="input-icon" size={16} />
+              <input
+                className="input"
+                type={showPass ? 'text' : 'password'}
+                placeholder="Create password (min 8 characters)"
+                value={form.password}
+                onChange={(e) => setForm({ ...form, password: e.target.value })}
+                required
+              />
+              <button
+                type="button"
+                className="eye-btn"
+                onClick={() => setShowPass(!showPass)}
+              >
+                {showPass ? <FiEyeOff /> : <FiEye />}
+              </button>
+            </div>
+          </div>
+
+          <div className="field">
+            <div className="input-wrapper select-wrapper">
+              <select
+                className="input select-input"
                 value={form.role}
-                onChange={(e) =>
-                  setForm({ ...form, role: e.target.value })
-                }
+                onChange={(e) => setForm({ ...form, role: e.target.value })}
               >
                 <option value="customer">Homeowner / Customer</option>
                 <option value="designer">Interior Designer</option>
@@ -177,23 +141,27 @@ const Register = () => {
                 <option value="owner">Owner</option>
               </select>
             </div>
+          </div>
 
-            <button
-              className="btn-primary submit-btn"
-              type="submit"
-              disabled={loading}
-            >
-              {loading ? 'Creating Account...' : 'Create Account'}
-            </button>
-          </form>
+          <button className="submit-btn" type="submit" disabled={loading}>
+            {loading ? 'Creating Account...' : 'Create Account'}
+          </button>
 
-          <p className="login-text">
-            Already have an account?{' '}
-            <span className="login-link" onClick={() => navigate('/login')}>
-              Sign In
-            </span>
-          </p>
-        </div>
+        </form>
+
+        <p className="terms-text">
+          By registering, you agree to our{' '}
+          <span className="terms-link">Terms of Service</span> and{' '}
+          <span className="terms-link">Privacy Policy</span>
+        </p>
+
+        <p className="login-text">
+          Already have an account?{' '}
+          <span className="login-link" onClick={() => navigate('/login')}>
+            Sign In
+          </span>
+        </p>
+
       </div>
     </div>
   );

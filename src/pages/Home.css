@@ -664,3 +664,47 @@
     padding: 2rem 1.5rem;
   }
 }
+
+.hero__room-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  inset: 0;
+}
+
+
+.offering-card__img {
+  height: 130px;
+  overflow: hidden;
+  position: relative;
+}
+
+.offering-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+}
+
+.offering-card:hover .offering-card__image {
+  transform: scale(1.05);
+}
+
+/* Mosaic cards */
+.mosaic__bg {
+  position: absolute;
+  inset: 0;
+  font-size: 0; /* hides any leftover emoji */
+}
+
+.mosaic__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+}
+
+.mosaic__card:hover .mosaic__image {
+  transform: scale(1.07);
+}

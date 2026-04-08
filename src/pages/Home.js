@@ -3,11 +3,11 @@ import { useNavigate } from 'react-router-dom';
 
 import './Home.css';
 
+
 const Home = () => {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('fullhome');
 
-  
   useEffect(() => {
     const elements = document.querySelectorAll('.fade-in');
     const observer = new IntersectionObserver(
@@ -24,7 +24,6 @@ const Home = () => {
     return () => observer.disconnect();
   }, []);
 
-  
   const tabs = [
     { id: 'fullhome', label: 'Full Home' },
     { id: 'kitchen',  label: 'Kitchen'   },
@@ -35,7 +34,6 @@ const Home = () => {
     navigate('/estimate');
   };
 
-  
   const trustItems = [
     { icon: '🏆', strong: '10-Year Warranty',   span: 'On all work done'       },
     { icon: '📅', strong: '45-Day Move-in',      span: 'Guaranteed delivery'    },
@@ -46,18 +44,45 @@ const Home = () => {
   ];
 
   const offerings = [
-    { emoji: '🍳', bg: 'bg1', title: 'Modular Interiors',   sub: 'Kitchens, wardrobes & storage',    path: '/designs' },
-    { emoji: '🏡', bg: 'bg2', title: 'Full Home Interiors', sub: 'End-to-end turnkey solutions',      path: '/designs' },
-    { emoji: '💎', bg: 'bg3', title: 'Luxury Interiors',    sub: 'Homes that redefine elegance',      path: '/designs' },
-    { emoji: '🔨', bg: 'bg4', title: 'Renovations',         sub: 'Expert upgrades & remodelling',     path: '/designs' },
+    {
+      img: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&q=80',
+      bg: 'bg1', title: 'Modular Interiors',   sub: 'Kitchens, wardrobes & storage',    path: '/designs'
+    },
+    {
+      img: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400&q=80',
+      bg: 'bg2', title: 'Full Home Interiors', sub: 'End-to-end turnkey solutions',      path: '/designs'
+    },
+    {
+      img: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=400&q=80',
+      bg: 'bg3', title: 'Luxury Interiors',    sub: 'Homes that redefine elegance',      path: '/designs'
+    },
+    {
+      img: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400&q=80',
+      bg: 'bg4', title: 'Renovations',         sub: 'Expert upgrades & remodelling',     path: '/designs'
+    },
   ];
 
   const mosaicItems = [
-    { emoji: '🛋️', bg: 'c1', label: 'Living Room Designs', big: true  },
-    { emoji: '🍳', bg: 'c2', label: 'Kitchen Designs',     big: false },
-    { emoji: '🚿', bg: 'c3', label: 'Bathroom',            big: false },
-    { emoji: '🛏️', bg: 'c4', label: 'Bedroom Designs',     big: false },
-    { emoji: '🌿', bg: 'c5', label: 'Balcony & Foyer',     big: false },
+    {
+      img: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=80',
+      bg: 'c1', label: 'Living Room Designs', big: true
+    },
+    {
+      img: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&q=80',
+      bg: 'c2', label: 'Kitchen Designs',     big: false
+    },
+    {
+      img: 'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=400&q=80',
+      bg: 'c3', label: 'Bathroom',            big: false
+    },
+    {
+      img: 'https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=400&q=80',
+      bg: 'c4', label: 'Bedroom Designs',     big: false
+    },
+    {
+      img: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80',
+      bg: 'c5', label: 'Balcony & Foyer',     big: false
+    },
   ];
 
   const steps = [
@@ -107,19 +132,28 @@ const Home = () => {
 
         <div className="hero__right">
           <div className="hero__room-card tall room-living">
-            <span className="hero__room-emoji">🛋️</span>
-            <span className="hero__room-lbl">Living Room</span>
+            <img
+              src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=80"
+              alt="Living Room"
+              className="hero__room-img"
+            />
             <span className="hero__room-tag">Living Room</span>
           </div>
           <div className="hero__room-col">
             <div className="hero__room-card room-kitchen">
-              <span className="hero__room-emoji">🍳</span>
-              <span className="hero__room-lbl">Kitchen</span>
+              <img
+                src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&q=80"
+                alt="Kitchen"
+                className="hero__room-img"
+              />
               <span className="hero__room-tag">Modular Kitchen</span>
             </div>
             <div className="hero__room-card room-bedroom">
-              <span className="hero__room-emoji">🛏️</span>
-              <span className="hero__room-lbl">Bedroom</span>
+              <img
+                src="https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=400&q=80"
+                alt="Bedroom"
+                className="hero__room-img"
+              />
               <span className="hero__room-tag">Bedroom</span>
             </div>
           </div>
@@ -139,7 +173,7 @@ const Home = () => {
         ))}
       </div>
 
-      
+     
       <section className="home-section fade-in">
         <div className="home-section__head">
           <div className="home-section__title">One-stop shop for all things interiors</div>
@@ -148,7 +182,9 @@ const Home = () => {
         <div className="offerings__grid">
           {offerings.map((item, i) => (
             <div className="offering-card" key={i} onClick={() => navigate(item.path)}>
-              <div className={`offering-card__img ${item.bg}`}>{item.emoji}</div>
+              <div className={`offering-card__img ${item.bg}`}>
+                <img src={item.img} alt={item.title} className="offering-card__image" />
+              </div>
               <div className="offering-card__body">
                 <strong>{item.title}</strong>
                 <span>{item.sub}</span>
@@ -196,14 +232,16 @@ const Home = () => {
               key={i}
               onClick={() => navigate('/designs')}
             >
-              <div className={`mosaic__bg ${item.bg}`}>{item.emoji}</div>
+              <div className={`mosaic__bg ${item.bg}`}>
+                <img src={item.img} alt={item.label} className="mosaic__image" />
+              </div>
               <div className="mosaic__label">{item.label}</div>
             </div>
           ))}
         </div>
       </section>
 
-      
+     
       <div className="how-it-works fade-in">
         <div className="home-section__head">
           <div className="home-section__title">How it works</div>
@@ -220,7 +258,7 @@ const Home = () => {
         </div>
       </div>
 
-      
+     
       <section className="home-section fade-in">
         <div className="home-section__head">
           <div className="home-section__title">What our customers say</div>
@@ -244,9 +282,7 @@ const Home = () => {
         <div className="footer-cta__title">
           Your <em>dream home</em> is just a click away
         </div>
-        <button className="footer-cta__btn" onClick={() => navigate('/register')}>
-          Get Started — It's Free
-        </button>
+       
       </div>
 
       
