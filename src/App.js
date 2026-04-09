@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 
 import Navbar from './components/Navbar';
-
+import Chatbot from './components/Chatbot';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -136,7 +136,7 @@ function App() {
 
         
         <Route path="*" element={<Navigate to="/" />} />
-
+      <Chatbot />
       </Routes>
     </Router>
   );
