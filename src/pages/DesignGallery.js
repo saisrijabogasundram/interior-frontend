@@ -14,9 +14,11 @@ const DesignGallery = () => {
   const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(true);
   const [searchParams] = useSearchParams();
+
   useEffect(() => {
     const room = searchParams.get('room');
     const category = searchParams.get('category');
+
     const roomMap = {
       'living-room': 'living_room',
       'kitchen':     'kitchen',
@@ -24,27 +26,25 @@ const DesignGallery = () => {
       'bedroom':     'bedroom',
       'balcony':     'balcony',
     };
-    if (room && roomMap[room]) {
-      setFilters((prev) => ({ ...prev, category: roomMap[room] }));
-    }else if (category) {                           
-    setFilters((prev) => ({ ...prev, category }));
-  }
-  }, [searchParams]);
-  useEffect(() => {
+
+    const resolvedCategory = room && roomMap[room]
+      ? roomMap[room]
+      : category || '';
+
     const fetchDesigns = async () => {
       setLoading(true);
       try {
         const params = {};
-
-        if (filters.category) params.category = filters.category;
-        if (filters.style) params.style = filters.style;
-        if (filters.budget) params.budget = filters.budget;
+        if (resolvedCategory) params.category = resolvedCategory;
+        if (filters.style)    params.style    = filters.style;
+        if (filters.budget)   params.budget   = filters.budget;
 
         const res = await API.get('/designs/', { params });
         setDesigns(res.data.results || res.data || []);
 
+        setFilters((prev) => ({ ...prev, category: resolvedCategory }));
       } catch (err) {
-        console.error("Error fetching designs:", err);
+        console.error('Error fetching designs:', err);
         setDesigns([]);
       } finally {
         setLoading(false);
@@ -52,7 +52,7 @@ const DesignGallery = () => {
     };
 
     fetchDesigns();
-  }, [filters]);
+  }, [searchParams, filters.style, filters.budget]);
 
   const filtered = (designs || []).filter((d) =>
     (d?.title || '').toLowerCase().includes(search.toLowerCase())
