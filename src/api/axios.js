@@ -4,7 +4,7 @@ const API = axios.create({
     baseURL: `${process.env.REACT_APP_API_URL}/api`
 });
 
-const PUBLIC_URLS = ['/designs/', '/designs'];
+const PUBLIC_URLS = ['/designs/', '/designs','/projects/', '/projects'];
 
 API.interceptors.request.use((config) => {
     const token = localStorage.getItem('access_token');

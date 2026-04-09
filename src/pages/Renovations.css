@@ -1,0 +1,65 @@
+.reno-hero {
+  background: #f0fff4;
+  padding: 60px 40px;
+  text-align: center;
+}
+
+.reno-hero__title {
+  font-size: 36px;
+  color: #1A6B3A;
+  margin-bottom: 12px;
+}
+
+.reno-hero__sub {
+  color: #666;
+  font-size: 18px;
+}
+
+.reno-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  padding: 48px 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.reno-card {
+  cursor: pointer;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #eee;
+  transition: transform 0.2s;
+}
+
+.reno-card:hover {
+  transform: translateY(-4px);
+}
+
+.reno-card__img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.reno-card__body {
+  padding: 20px;
+}
+
+.reno-card__title {
+  font-size: 20px;
+  color: #1A6B3A;
+  margin-bottom: 8px;
+}
+
+.reno-card__desc {
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+.reno-card__arrow {
+  color: #1A6B3A;
+  font-weight: 600;
+  font-size: 14px;
+}
