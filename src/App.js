@@ -136,8 +136,9 @@ function App() {
 
         
         <Route path="*" element={<Navigate to="/" />} />
-      <Chatbot />
+      
       </Routes>
+      <Chatbot />
     </Router>
   );
 }
