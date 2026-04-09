@@ -235,7 +235,7 @@ const Home = () => {
             <div
               className={`mosaic__card ${item.big ? 'big' : ''}`}
               key={i}
-              onClick={() => navigate('item.path')}
+              onClick={() => navigate(item.path)}
             >
               <div className={`mosaic__bg ${item.bg}`}>
                 <img src={item.img} alt={item.label} className="mosaic__image" />
