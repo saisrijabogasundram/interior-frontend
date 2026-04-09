@@ -16,6 +16,7 @@ const DesignGallery = () => {
   const [searchParams] = useSearchParams();
   useEffect(() => {
     const room = searchParams.get('room');
+    const category = searchParams.get('category');
     const roomMap = {
       'living-room': 'living_room',
       'kitchen':     'kitchen',
@@ -25,7 +26,9 @@ const DesignGallery = () => {
     };
     if (room && roomMap[room]) {
       setFilters((prev) => ({ ...prev, category: roomMap[room] }));
-    }
+    }else if (category) {                           
+    setFilters((prev) => ({ ...prev, category }));
+  }
   }, [searchParams]);
   useEffect(() => {
     const fetchDesigns = async () => {
@@ -95,6 +98,8 @@ const DesignGallery = () => {
               <option value="office">Office</option>
               <option value="modular_furniture">Modular</option>
               <option value="lighting_decor">Lighting & Decor</option>
+              <option value="bathroom">Bathroom</option>
+              <option value="balcony">Balcony & Foyer</option>
             </select>
 
             <select

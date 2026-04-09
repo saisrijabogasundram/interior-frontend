@@ -46,19 +46,19 @@ const Home = () => {
   const offerings = [
     {
       img: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&q=80',
-      bg: 'bg1', title: 'Modular Interiors',   sub: 'Kitchens, wardrobes & storage',    path: '/designs'
+      bg: 'bg1', title: 'Modular Interiors',   sub: 'Kitchens, wardrobes & storage',    path: '/designs?category=modular' 
     },
     {
       img: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400&q=80',
-      bg: 'bg2', title: 'Full Home Interiors', sub: 'End-to-end turnkey solutions',      path: '/designs'
+      bg: 'bg2', title: 'Full Home Interiors', sub: 'End-to-end turnkey solutions',      path: '/designs?category=full_home'      
     },
     {
       img: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=400&q=80',
-      bg: 'bg3', title: 'Luxury Interiors',    sub: 'Homes that redefine elegance',      path: '/designs'
+      bg: 'bg3', title: 'Luxury Interiors',    sub: 'Homes that redefine elegance',      path: '/designs?category=luxury' 
     },
     {
       img: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400&q=80',
-      bg: 'bg4', title: 'Renovations',         sub: 'Expert upgrades & remodelling',     path: '/designs'
+      bg: 'bg4', title: 'Renovations',         sub: 'Expert upgrades & remodelling',      path: '/designs?category=renovation' 
     },
   ];
 
