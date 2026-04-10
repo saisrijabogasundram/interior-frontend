@@ -83,6 +83,17 @@ const Chatbot = () => {
           </div>
         </div>
       )}
+      href="https://wa.me/919876543210"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="whatsapp-fab"
+      <a>
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+          alt="WhatsApp"
+          style={{ width: '28px', height: '28px' }}
+        />
+      </a>
 
       <button className="chatbot-fab" onClick={() => setIsOpen(!isOpen)}>
         {isOpen ? '✕' : '💬'}
