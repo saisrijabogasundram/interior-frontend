@@ -81,6 +81,7 @@ const AdminDashboard = () => {
     { icon: '🎨', bg: '#e8f0ff', color: '#4f46e5', label: 'Manage Designers',  sub: 'View & remove designers',     path: '/staff/designers' },
     { icon: '👥', bg: '#fee8e8', color: '#dc2626', label: 'Manage Staff',      sub: 'Add or remove staff members', path: '/admin/staff'     },
     { icon: '📊', bg: '#f0f0ff', color: '#7c3aed', label: 'Reports',           sub: 'View full analytics',         path: '/admin/reports'   },
+    { icon: '📋', bg: '#e8fff0', color: '#0f766e', label: 'Manage Leads',      sub: 'View & assign customer leads', path: '/admin/leads'    },
   ];
 
   return (

@@ -25,6 +25,7 @@ import ManageBookings from './pages/ManageBookings';
 import ManageProducts from './pages/ManageProducts';
 import ManageDesigners from './pages/ManageDesigners';
 import Reports from './pages/Reports';
+import StaffLeads from './pages/StaffLeads';
 
 import { AdminRoute, StaffRoute } from './utils/PrivateRoute';
 
@@ -56,7 +57,14 @@ function App() {
         <Route path="/luxury" element={<LuxuryInteriors />} />
         <Route path="/renovations" element={<Renovations />} />
 
-
+        <Route
+          path="/admin/leads"
+          element={
+            <AdminRoute>
+              <ManageLeads />
+            </AdminRoute>
+          }
+        />
         <Route
           path="/admin/staff"
           element={
@@ -81,7 +89,14 @@ function App() {
             </AdminRoute>
           }
         />
-
+        <Route
+          path="/staff/leads"
+          element={
+            <StaffRoute>
+              <StaffLeads />
+            </StaffRoute>
+          }
+        />
         
         <Route
           path="/staff/bookings"

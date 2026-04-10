@@ -130,3 +130,111 @@
   border-radius: 8px;
   margin-bottom: 16px;
 }
+.leads-count {
+  background: #f3eeff;
+  color: #4A1A6B;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.leads-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 20px;
+}
+
+.lead-card {
+  background: white;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.lead-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.lead-card__name {
+  font-size: 18px;
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.lead-card__phone {
+  font-size: 14px;
+  color: #4A1A6B;
+  font-weight: 500;
+}
+
+.lead-status-badge {
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.lead-card__detail {
+  font-size: 13px;
+  color: #666;
+}
+
+.lead-card__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 8px;
+  padding-top: 12px;
+  border-top: 1px solid #eee;
+}
+
+.lead-card__field {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.lead-card__field label {
+  font-size: 13px;
+  color: #666;
+  min-width: 110px;
+}
+
+.lead-select {
+  flex: 1;
+  padding: 8px 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 13px;
+  outline: none;
+}
+
+.lead-select:focus {
+  border-color: #4A1A6B;
+}
+.call-btn {
+  background: #e8f5e9;
+  color: #2e7d32;
+  border: 1px solid #c8e6c9;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.call-btn:hover {
+  background: #c8e6c9;
+}

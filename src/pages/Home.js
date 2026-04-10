@@ -1,12 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import API from '../api/axios'; 
 import './Home.css';
 
 
 const Home = () => {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('fullhome');
+   const [leadForm, setLeadForm] = useState({ name: '', phone: '', email: '', message: '' });
+  const [leadMessage, setLeadMessage] = useState('');
+
+  const handleLeadSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await API.post('/bookings/leads/', leadForm);
+      setLeadMessage('Thank you! Our team will contact you soon.');
+      setLeadForm({ name: '', phone: '', email: '', message: '' });
+      setTimeout(() => setLeadMessage(''), 4000);
+    } catch {
+      setLeadMessage('Something went wrong. Please try again.');
+    }
+  };
 
   useEffect(() => {
     const elements = document.querySelectorAll('.fade-in');
@@ -292,7 +306,52 @@ const Home = () => {
         <div className="footer-cta__title">
           Your <em>dream home</em> is just a click away
         </div>
-       
+        <p className="footer-cta__sub">
+    Leave your details — our experts will call you back!
+  </p>
+
+  {leadMessage && <div className="lead-success">{leadMessage}</div>}
+
+  <form className="lead-form" onSubmit={handleLeadSubmit}>
+    <div className="lead-form__row">
+      <input
+        className="lead-input"
+        type="text"
+        placeholder="Your Name"
+        value={leadForm.name}
+        onChange={(e) => setLeadForm({ ...leadForm, name: e.target.value })}
+        required
+      />
+      <input
+        className="lead-input"
+        type="tel"
+        placeholder="Phone Number"
+        value={leadForm.phone}
+        onChange={(e) => setLeadForm({ ...leadForm, phone: e.target.value })}
+        required
+      />
+    </div>
+    <div className="lead-form__row">
+      <input
+        className="lead-input"
+        type="email"
+        placeholder="Email (optional)"
+        value={leadForm.email}
+        onChange={(e) => setLeadForm({ ...leadForm, email: e.target.value })}
+      />
+      <input
+        className="lead-input"
+        type="text"
+        placeholder="Your requirement (optional)"
+        value={leadForm.message}
+        onChange={(e) => setLeadForm({ ...leadForm, message: e.target.value })}
+      />
+    </div>
+     <button className="lead-submit" type="submit">
+      Get Free Consultation →
+     </button>
+     </form>
+
       </div>
 
       

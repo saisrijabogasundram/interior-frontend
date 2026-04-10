@@ -583,6 +583,66 @@
   opacity: 1;
   transform: translateY(0);
 }
+.footer-cta__sub {
+  color: #666;
+  font-size: 16px;
+  margin-bottom: 24px;
+}
+
+.lead-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.lead-form__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.lead-input {
+  padding: 12px 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  width: 100%;
+}
+
+.lead-input:focus {
+  border-color: #4A1A6B;
+}
+
+.lead-submit {
+  background: #4A1A6B;
+  color: white;
+  border: none;
+  padding: 14px 32px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.lead-submit:hover {
+  background: #6B2A9B;
+}
+
+.lead-success {
+  background: #e8f5e9;
+  color: #2e7d32;
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  text-align: center;
+  font-size: 14px;
+}
 
 @media (max-width: 1024px) {
   .offerings__grid {
@@ -691,7 +751,7 @@
   transform: scale(1.05);
 }
 
-/* Mosaic cards */
+
 .mosaic__bg {
   position: absolute;
   inset: 0;

@@ -61,6 +61,7 @@ const StaffDashboard = () => {
     { icon: '📅', bg: '#e8f5f0', color: '#1a4a3a', label: 'Manage Bookings',  sub: 'View & update all bookings', path: '/staff/bookings'  },
     { icon: '📦', bg: '#fff3e8', color: '#d97706', label: 'Manage Products',   sub: 'Add, edit, remove products', path: '/staff/products'  },
     { icon: '🎨', bg: '#e8f0ff', color: '#4f46e5', label: 'Manage Designers',  sub: 'View & remove designers',    path: '/staff/designers' },
+    { icon: '📋', bg: '#e8fff0', color: '#0f766e', label: 'My Leads',          sub: 'View assigned customer leads', path: '/staff/leads'  },
   ];
 
   return (
