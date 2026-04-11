@@ -26,7 +26,7 @@ import ManageProducts from './pages/ManageProducts';
 import ManageDesigners from './pages/ManageDesigners';
 import Reports from './pages/Reports';
 import StaffLeads from './pages/StaffLeads';
-
+import ManageLeads from './pages/ManageLeads'
 import { AdminRoute, StaffRoute } from './utils/PrivateRoute';
 
 const UserRoute = ({ children }) => {

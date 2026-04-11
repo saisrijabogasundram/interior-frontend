@@ -30,19 +30,23 @@ const DesignGallery = () => {
     const resolvedCategory = room && roomMap[room]
       ? roomMap[room]
       : category || '';
-
+    if (resolvedCategory) {
+      setFilters((prev) => ({ ...prev, category: resolvedCategory }));
+    }
+  }, [searchParams]);
+  useEffect(() => {
     const fetchDesigns = async () => {
       setLoading(true);
       try {
         const params = {};
-        if (resolvedCategory) params.category = resolvedCategory;
+        if (filters.category) params.category = filters.category;
         if (filters.style)    params.style    = filters.style;
         if (filters.budget)   params.budget   = filters.budget;
 
         const res = await API.get('/designs/', { params });
         setDesigns(res.data.results || res.data || []);
 
-        setFilters((prev) => ({ ...prev, category: resolvedCategory }));
+        
       } catch (err) {
         console.error('Error fetching designs:', err);
         setDesigns([]);
@@ -52,7 +56,7 @@ const DesignGallery = () => {
     };
 
     fetchDesigns();
-  }, [searchParams, filters.style, filters.budget]);
+  }, [filters.category, filters.style, filters.budget]);
 
   const filtered = (designs || []).filter((d) =>
     (d?.title || '').toLowerCase().includes(search.toLowerCase())

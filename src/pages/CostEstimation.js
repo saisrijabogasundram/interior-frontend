@@ -10,12 +10,14 @@ import {
   FiArrowRight
 } from 'react-icons/fi';
 import './CostEstimation.css';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 const CostEstimation = () => {
+  const [searchParams] = useSearchParams();
   const navigate = useNavigate();
 
   const [form, setForm] = useState({
-    room_type: '',
+    room_type: searchParams.get('type') || '',
     room_size_sqft: '',
     material_quality: '',
     design_style: '',
