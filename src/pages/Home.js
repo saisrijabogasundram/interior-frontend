@@ -45,7 +45,7 @@ const Home = () => {
   ];
 
   const handleCalculate = () => {
-    navigate('/estimate?type=${activeTab}');
+    navigate(`/estimate?type=${activeTab}`);
   };
 
   const trustItems = [

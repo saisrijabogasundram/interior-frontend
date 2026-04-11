@@ -83,11 +83,13 @@ const Chatbot = () => {
           </div>
         </div>
       )}
-      href="https://wa.me/919876543210"
+
+      <a
+        href="https://wa.me/919876543210"
         target="_blank"
         rel="noopener noreferrer"
         className="whatsapp-fab"
-      <a>
+      >
         <img
           src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
           alt="WhatsApp"

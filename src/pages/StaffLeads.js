@@ -95,12 +95,14 @@ const StaffLeads = () => {
                 </div>
               </div>
 
-              
-                href={`tel:${lead.phone}`}
+              <a
+                 href={`tel:${lead.phone}`}
+                target="_self"
+                rel="noopener noreferrer"
                 className="call-btn"
-              <a>
-                📞 Call Customer
-              </a>
+                >
+                    📞 Call Customer
+                </a>
             </div>
           ))}
         </div>
