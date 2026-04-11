@@ -10,7 +10,7 @@ import {
   FiArrowRight
 } from 'react-icons/fi';
 import './CostEstimation.css';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+
 
 const CostEstimation = () => {
   const [searchParams] = useSearchParams();
